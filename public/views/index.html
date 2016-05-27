@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en" ng-app="visualApp">
+<head>
+  <meta charset="utf-8">
+  <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+  <title>HCL Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="scripts/mainScript.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</head>
+<body  ng-controller="visualCtrl">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">HCL Visual</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Hi! {{usernamex}}</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+     <li>  <button ng-click="loadmore()">Load More Graphs</button></li>
+      <li><a href="http://localhost:4000/logout/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+  
+  <div>
+  <div ng-show="myWelcome">
+  <iframe class="col-lg-12 col-md-12 col-sm-12" ng-src="{{url1x}}" height="330" width="1500"></iframe>
+  </div>
+<div ng-show="show">
+  <iframe class="col-lg-4 col-md-4 col-sm-4" ng-src="{{url2x}}" height="200" width="100"></iframe>
+  <iframe class="col-lg-4 col-md-4 col-sm-4" ng-src="{{url3x}}" height="200" width="100"></iframe>
+  <iframe class="col-lg-4 col-md-4 col-sm-4" ng-src="{{url4x}}" height="200" width="100"></iframe>
+</div>
+  </div>
+</div>
+  <form accept-charset="UTF-8" role="form" ng-submit="myFunc()">
+  <input class="btn btn-lg btn-success btn-block" type="submit" value="SSO VISUALIZATION DEMO APP">
+</form>
+</div>
+</div>
+
+</body>
+
+</html>
