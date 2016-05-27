@@ -7,6 +7,73 @@ var bodyParser = require('body-parser');
 
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
+var Converter = require("csvtojson").Converter;
+var converter = new Converter({});
+converter.fromFile("abc.csv",function(err,result){ 
+  console.log(result);
+});
+
+var json2csv = require('nice-json2csv');
+
+
+app.use(json2csv.expressDecorator);  
+
+app.get('/getCsv', function(req, res){
+    res.csv([
+  {
+   "name": "Amit",
+   "children": [
+    {
+     "name": "Ankit",
+     "children": [
+      {"name": "Hardik", "size": 3938,"children": [
+                                          {"name": "Naveen", "size": 3938},
+                                          {"name": "Aanchal", "size": 743} ]
+  },
+      {"name": "Atul", "size": 3812},
+      {"name": "Avinash", "size": 6714},
+      {"name": "Ashish", "size": 743}
+     ]
+    },
+    {
+     "name": "Varun",
+     "children": [
+      {"name": "Apoorv", "size": 3534},
+      {"name": "Dinesh", "size": 5731},
+      {"name": "Benezir", "size": 7840},
+      {"name": "xxx", "size": 5914}
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Chetan",
+   "children": [
+    {
+     "name": "Faujan",
+     "children": [
+      {"name": "ABC", "size": 1302},
+      {"name": "DEF", "size": 24593},
+      {"name": "GHI", "size": 652},
+      {"name": "JKL", "size": 636},
+      {"name": "ABN", "size": 6703}
+     ]
+    },
+    {
+     "name": "Sandeep",
+     "children": [
+      {"name": "xyz", "size": 2138},
+      {"name": "x1x", "size": 3824},
+      {"name": "y1y", "size": 8435}
+     ]
+    },
+    {"name": "Divyesh", "size": 16540}
+   ]
+  }
+ ], "myFile.csv");
+});
+
+
 
 app.use(require('./routes/corsheaders'));
     // res.header('Access-Control-Allow-Origin', req.headers.origin); 
