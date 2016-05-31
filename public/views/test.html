@@ -24,12 +24,13 @@
 
 </style>
 <body>
+  <div class="example_div"></div>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    width = 560 - margin.right - margin.left,
+    height = 400 - margin.top - margin.bottom;
 
 var i = 0,
     duration = 750,
@@ -47,6 +48,21 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    function updateWindow(){
+    x = w.innerWidth || e.clientWidth || g.clientWidth;
+    y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+
+    svg.attr("width", x).attr("height", y);
+}
+window.onresize = updateWindow;
+
+var tooltip = d3.select("body")
+  .append("div")
+  .style("position", "absolute")
+  .style("z-index", "10")
+  .style("visibility", "hidden")
+  .text("a simple tooltip");
+  
 
 var json ={
  "name": "Emploee",
@@ -58,7 +74,13 @@ var json ={
      "name": "Ankit",
      "children": [
       {"name": "Hardik", "size": 3938,"children": [
-                                          {"name": "Naveen", "size": 3938},
+                                          {"name": "Naveen", "size": 3938,"children":[
+                                              {"name": "Naveen", "size": 3938 ,"children":[
+                                                  {"name": "Naveen", "size": 3938,"children":[
+                                                  {"name": "Naveen", "size": 3938}
+                                                  ]}
+                                                  ]
+                                                }]},
                                           {"name": "Aanchal", "size": 743} ]
   },
       {"name": "Atul", "size": 3812},
@@ -134,7 +156,7 @@ function update(source) {
       links = tree.links(nodes);
 
   // Normalize for fixed-depth.
-  nodes.forEach(function(d) { d.y = d.depth * 180; });
+  nodes.forEach(function(d) { d.y = d.depth * 100; });
 
   // Update the nodes…
   var node = svg.selectAll("g.node")
@@ -157,7 +179,9 @@ function update(source) {
         return d._children ? "red" : "#fff"; 
       }
          return d._children ? "lightsteelblue" : "#fff"; 
-       });
+       })
+        .append("svg:title").text(function(d) {return "Time: " + d + 
+"\nValue: " + d.name;});
 
   nodeEnter.append("text")
       .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
@@ -185,6 +209,23 @@ function update(source) {
       }
       else{
         return "#fff"}});;
+      var sampleSVG = d3.select(".example_div")
+  .append("svg:svg")
+  .attr("class", "sample")
+  .attr("width", 300)
+  .attr("height", 300);    
+  
+d3.select(".example_div svg")
+  .append("svg:circle")
+  .attr("stroke", "black")
+  .attr("fill", "aliceblue")
+  .attr("r", 50)
+  .attr("cx", 52)
+  .attr("cy", 52)
+  .on("mouseover", function(){return tooltip.style("visibility", "visible");})
+  .on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+  .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
         
        // return d._children ? "red" : "#fff"; });
 
