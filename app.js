@@ -1,24 +1,34 @@
+// var Converter = require("csvtojson").Converter;
+// var converter = new Converter({});
+// converter.fromFile("sample.csv",function(err,result){ 
+//   console.log(result);
+// }
+
+
 var express = require('express');
 var app = express();
 var router = express.Router();
 
+//app.set('view engine', 'jade');
 var bodyParser = require('body-parser');
 
 var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 
+
 app.use(bodyParser.json({ 
- 	limit: '10mb' 
+  limit: '10mb' 
     })); 
 
 app.use(cookieParser());
 app.use(expressSession({
-	secret:'secret',
-	resave: false,
+  secret:'secret',
+  resave: false,
    saveUninitialized: true,
   cookie: { 
-  	 maxAge: 45000, 
-    httpOnly: false, // key
+     maxAge: 45000, 
+ //   secure: true ,
+     httpOnly: false, // key
  //    maxAge: null
    }
 }));
