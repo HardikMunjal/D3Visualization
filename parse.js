@@ -10,24 +10,42 @@ var arr=[
 ]
 
 
-function getNestedChildren(arr, parent) {
-    var out = []
-    console.log(arr);
-    console.log(parent);
-    for(var i in arr) {
-      console.log('coming here');
-        if(arr[i].parent == parent) {
-          console.log('but not here');
-            var children = getNestedChildren(arr, arr[i].id)
+var test=[
+    {id: 1, title: 'hello', parent: 0},
+    {id: 2, title: 'hello', parent: 0}
+]
 
-            if(children.length) {
-                arr[i].children = children
-            }
-            out.push(arr[i])
+for(i=0;i<arr.length;i++){
+    for(j=0;j<test.length;j++){
+        if(JSON.stringify(arr[i]) == JSON.stringify(test[j])){
+            console.log(arr[i]);
+            console.log(arr[j]);
+            arr[i].parent=100;
+            console.log('done');
         }
     }
-    console.log(out);
-    return out
+    console.log(arr);
+    console.log(arr[0])
 }
-getNestedChildren(arr,0)
+
+// function getNestedChildren(arr, parent) {
+//     var out = []
+//     console.log(arr);
+//     console.log(parent);
+//     for(var i in arr) {
+//       console.log('coming here');
+//         if(arr[i].parent == parent) {
+//           console.log('but not here');
+//             var children = getNestedChildren(arr, arr[i].id)
+
+//             if(children.length) {
+//                 arr[i].children = children
+//             }
+//             out.push(arr[i])
+//         }
+//     }
+//     console.log(out);
+//     return out
+// }
+// getNestedChildren(arr,0)
 
