@@ -1,0 +1,10 @@
+
+
+
+	Selections
+
+Before you can change or modify any elements in d3 we must first select them
+
+like> d3.select("div")
+
+d3.select(".classname")

@@ -1,0 +1,13 @@
+SVG defines vector based graphics in XML format
+SVG graphics do not loose any quality if they are zoomed or resized
+The main competitor of svg is Flash
+But the advantage of svg is control over DOM
+Flash is not an open source
+In HTML5, you can embed SVG elements directly into your HTML pages.
+
+####### to create circle
+
+<svg width="100" height="100">
+  <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow"/>
+</svg>
+
