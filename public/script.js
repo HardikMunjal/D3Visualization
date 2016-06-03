@@ -124,13 +124,6 @@ function update(source) {
   nodeEnter.append("circle")
   .attr("r", 1e-6)
   .style("fill", function(d) {
-    if(d._children){
-      console.log(d._children.length);
-    }
-    if(d._children && d._children.length>3){
-      console.log('coming here');
-      return d._children ? "red" : "#fff"; 
-    }
     return d._children ? "lightsteelblue" : "#fff"; 
   })
   .append("svg:title").text(function(d) {return "Current Tasks: " + d.isClient + 
@@ -149,7 +142,7 @@ function update(source) {
   .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
   nodeUpdate.select("circle")
-  .attr("r", 4)
+  .attr("r", 4.5)
   .style("fill", function(d) { 
 
     $scope.totalEmployees
@@ -162,11 +155,11 @@ function update(source) {
 
    if(d._children && effectivePercentage>20){
     console.log('coming here');
-    return "#8DD3C7"; 
+    return "lightgreen"; 
    }
   if(d._children && effectivePercentage<20 && effectivePercentage>10){
     console.log('coming here');
-    return "green"; 
+    return "#8DD3C7"; 
    }
    if(d._children && effectivePercentage<10 && effectivePercentage>5){
     console.log('coming here');
